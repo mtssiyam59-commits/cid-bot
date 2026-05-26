@@ -3,16 +3,13 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, filters, ConversationHandler
 import yt_dlp
 import imageio_ffmpeg
-
 FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
 TOKEN = os.environ.get("TOKEN")
 MAX_FILE_MB = 35
 DOWNLOAD_DIR = "downloads"
 DEVELOPER = "BY : RH RATUL"
-
 (WAITING_LINK, WAITING_TRIM, WAITING_PROMO_CHOICE,
  WAITING_PROMO_FILE, WAITING_PROMO_POSITION, WAITING_PROMO_TIME) = range(6)
-
 logging.basicConfig(level=logging.ERROR)
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
@@ -25,7 +22,14 @@ def download_video(url, output_path):
         "geo_bypass": True,
         "geo_bypass_country": "US",
         "http_headers": {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "User-Agent": "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        },
+        "extractor_args": {
+            "youtube": {
+                "player_client": ["android"],
+            }
         },
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -114,7 +118,7 @@ def cleanup(*paths):
 
 async def start(update, context):
     await update.message.reply_text(
-        "🎬 *Video Downloader Bot*\n\nYouTube লিংক পাঠাও!\n\n✅ 360p\n✂️ Cut\n📎 Promo\n📦 Auto Split\n\n"
+        "🎬 *Video Downloader Bot*\n\nYouTube লিংক পাঠাও!\n\n✅ 480p\n✂️ Cut\n📎 Promo\n📦 Auto Split\n\n"
         f"_{DEVELOPER}_", parse_mode="Markdown")
     return WAITING_LINK
 
