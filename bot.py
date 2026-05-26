@@ -13,7 +13,7 @@ DEVELOPER = "BY : RH RATUL"
 logging.basicConfig(level=logging.ERROR)
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
-def download_video(url, output_path):
+def "cookiefile": "cookies.txt",(url, output_path):
     ydl_opts = {
         "format": "bestvideo[height<=480]+bestaudio/best",
         "outtmpl": output_path,
@@ -227,7 +227,7 @@ async def process_video(message, context):
     trimmed = f"{DOWNLOAD_DIR}/{uid}_trimmed.mp4"
     try:
         await message.reply_text("📥 ডাউনলোড হচ্ছে...")
-        current = download_video(url, raw)
+        current = "cookiefile": "cookies.txt",(url, raw)
         if trim:
             await message.reply_text(f"✂️ Trimming: {trim[0]} → {trim[1]}")
             trim_video(current, trim[0], trim[1], trimmed)
