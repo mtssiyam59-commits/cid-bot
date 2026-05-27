@@ -13,7 +13,7 @@ DEVELOPER = "BY : RH RATUL"
 logging.basicConfig(level=logging.ERROR)
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
-def "cookiefile": "cookies.txt",(url, output_path):
+def download_video(url, output_path):
     ydl_opts = {
         "format": "bestvideo[height<=480]+bestaudio/best",
         "outtmpl": output_path,
