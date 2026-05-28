@@ -227,7 +227,7 @@ async def process_video(message, context):
     trimmed = f"{DOWNLOAD_DIR}/{uid}_trimmed.mp4"
     try:
         await message.reply_text("📥 ডাউনলোড হচ্ছে...")
-        
+        current = download_video(url, raw)
         if trim:
             await message.reply_text(f"✂️ Trimming: {trim[0]} → {trim[1]}")
             trim_video(current, trim[0], trim[1], trimmed)
